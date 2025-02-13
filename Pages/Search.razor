@@ -1,0 +1,45 @@
+﻿@page "/"
+@inherits SearchBase
+
+<PageTitle>Eksploruj</PageTitle>
+
+<div class="search-container">
+    <div class="search-form">
+        <label><span role="img" aria-label="Airport">✈️</span> Lotnisko wylotu:</label>
+        <input type="text" @bind="DepartureAirport" placeholder="Np. WAW (Warszawa)" />
+
+        <label><span role="img" aria-label="Arrival">🌍</span> Lotnisko przylotu:</label>
+        <input type="text" @bind="ArrivalAirport" placeholder="Np. JFK (Nowy Jork)" />
+
+        <label><span role="img" aria-label="Departure date">📅</span> Data wylotu:</label>
+        <input type="date" @bind="DepartureDate" />
+
+        <label><span role="img" aria-label="Return date">🔙</span> Data powrotu (opcjonalnie):</label>
+        <input type="date" @bind="ReturnDate" />
+
+        <button @onclick="SearchFlights"><span role="img" aria-label="Search">🔍</span> Szukaj</button>
+    </div>
+
+    @if (Flights is not null)
+    {
+        <div class="results">
+            <h3>Wyniki wyszukiwania:</h3>
+            @if (Flights.Count == 0)
+            {
+                <p>Brak dostępnych lotów.</p>
+            }
+            else
+            {
+                <ul>
+                    @foreach (var flight in Flights)
+                    {
+                        <li>
+                            <strong>@flight.DepartureAirport → @flight.ArrivalAirport</strong><br />
+                            Data: @flight.DepartureDate.ToShortDateString() | Cena: @flight.Price PLN
+                        </li>
+                    }
+                </ul>
+            }
+        </div>
+    }
+</div>

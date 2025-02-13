@@ -1,0 +1,60 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+.top-row {
+    background-color: #fff;
+    border-bottom: 1px solid #ddd;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 0 15px;
+    height: 10vh;
+}
+
+.navbar-nav {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding-left: 0;
+}
+
+.nav-item {
+    text-decoration: none;
+    padding: 10px 25px;
+    font-size: 16px;
+    color: #333;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    transition: all 0.3s ease;
+    border: 2px solid #ddd;
+    border-radius: 25px;
+    margin: 0 15px;
+}
+.nav-item i {
+        margin-right: 8px;
+        color: #1a73e8;
+
+}
+
+.nav-item:hover {
+        color: #1a73e8;
+        background-color: #f1f3f4;
+        border: 2px solid #1a73e8;
+}
+
+.nav-link.active {
+    color: #1a73e8;
+    background-color: #e8f0fe;
+    border: 2px solid #1a73e8;
+}
+
+#leafletMap {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
