@@ -1,16 +1,12 @@
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
 }
 
 .top-row {
     background-color: #fff;
     border-bottom: 1px solid #ddd;
     position: sticky;
-    top: 0;
-    z-index: 1000;
-    padding: 0 15px;
     height: 10vh;
 }
 
@@ -18,7 +14,6 @@ html, body {
     display: flex;
     justify-content: center;
     width: 100%;
-    padding-left: 0;
 }
 
 .nav-item {
@@ -50,11 +45,4 @@ html, body {
     color: #1a73e8;
     background-color: #e8f0fe;
     border: 2px solid #1a73e8;
-}
-
-#leafletMap {
-    height: 100vh;
-    width: 100vw;
-    margin: 0;
-    padding: 0;
 }

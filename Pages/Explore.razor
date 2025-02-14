@@ -1,16 +1,6 @@
 ﻿@page "/explore"
-@inject IJSRuntime JSRuntime
+@inherits ExploreBase
 
 <PageTitle>Eksploruj</PageTitle>
 
 <div id="leafletMap"></div>
-
-@code {
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await JSRuntime.InvokeVoidAsync("initializeLeafletMap");
-        }
-    }
-}
