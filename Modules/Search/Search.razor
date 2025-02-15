@@ -1,4 +1,4 @@
-﻿@page "/"
+﻿@page "/search"
 @inherits SearchBase
 
 <PageTitle>Eksploruj</PageTitle>
@@ -17,29 +17,15 @@
         <label><span role="img" aria-label="Return date">🔙</span> Data powrotu (opcjonalnie):</label>
         <input type="date" @bind="ReturnDate" />
 
-        <button @onclick="SearchFlights"><span role="img" aria-label="Search">🔍</span> Szukaj</button>
+        <button @onclick="ShowComingSoonMessage">
+            <span role="img" aria-label="Search">🔍</span> Szukaj
+        </button>
     </div>
 
-    @if (Flights is not null)
+    @if (ShowMessage)
     {
-        <div class="results">
-            <h3>Wyniki wyszukiwania:</h3>
-            @if (Flights.Count == 0)
-            {
-                <p>Brak dostępnych lotów.</p>
-            }
-            else
-            {
-                <ul>
-                    @foreach (var flight in Flights)
-                    {
-                        <li>
-                            <strong>@flight.DepartureAirport → @flight.ArrivalAirport</strong><br />
-                            Data: @flight.DepartureDate.ToShortDateString() | Cena: @flight.Price PLN
-                        </li>
-                    }
-                </ul>
-            }
+        <div class="coming-soon-message">
+            🚀 Ta funkcja zostanie dodana wkrótce! Śledź nasze aktualizacje. 😊
         </div>
     }
 </div>

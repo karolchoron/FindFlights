@@ -1,0 +1,35 @@
+﻿@page "/flight-tracker"
+@inherits FlightTrackerBase
+
+<PageTitle>Śledzenie Lotu</PageTitle>
+
+<div class="tracker-container">
+    <h2><span role="img" aria-label="plane">✈️</span> Śledź swój lot</h2>
+    <p>Wpisz numer lotu, aby zobaczyć jego aktualny status.</p>
+
+    <div class="search-box">
+        <input type="text" @bind="FlightNumber" placeholder="Np. LO267" />
+        <button @onclick="SearchFlight"><span role="img" aria-label="search">🔍</span> Sprawdź</button>
+    </div>
+
+    @if (FlightData is not null)
+    {
+        <div class="flight-info">
+            <h3><span role="img" aria-label="info">ℹ️</span> Szczegóły lotu</h3>
+            <div class="details">
+                <p><strong>Linia lotnicza:</strong> @FlightData.Airline.Name (@FlightData.Airline.Iata)</p>
+                <p><strong>Status:</strong> <span class="status">@FlightData.FlightStatus</span></p>
+
+                <h4>✈️ Wylot</h4>
+                <p><strong>Lotnisko:</strong> @FlightData.Departure.Name (@FlightData.Departure.Iata)</p>
+                <p><strong>Planowany czas:</strong> @FlightData.Departure.Scheduled</p>
+                <p><strong>Opóźnienie:</strong> @(FlightData.Departure.Delay ?? 0) min</p>
+
+                <h4>🛬 Przylot</h4>
+                <p><strong>Lotnisko:</strong> @FlightData.Arrival.Name (@FlightData.Arrival.Iata)</p>
+                <p><strong>Planowany czas:</strong> @FlightData.Arrival.Scheduled</p>
+                <p><strong>Terminal:</strong> @FlightData.Arrival.Terminal</p>
+            </div>
+        </div>
+    }
+</div>

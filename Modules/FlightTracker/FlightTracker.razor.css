@@ -1,0 +1,96 @@
+﻿.tracker-container {
+    max-width: 600px;
+    margin: auto;
+    padding: 40px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+h2 {
+    font-size: 28px;
+    color: #333;
+    font-weight: bold;
+}
+
+p {
+    font-size: 18px;
+    color: #555;
+    margin-top: 10px;
+}
+
+.search-box {
+    display: flex;
+    flex-direction: row;
+    gap: 15px;
+    margin-top: 25px;
+}
+
+    .search-box input {
+        padding: 12px;
+        font-size: 16px;
+        border-radius: 8px;
+        border: 1px solid #ccc;
+        width: 70%;
+        background-color: #f9f9f9;
+        transition: all 0.3s ease;
+    }
+
+        .search-box input:focus {
+            border-color: #007bff;
+            background-color: #fff;
+            outline: none;
+        }
+
+    .search-box button {
+        padding: 14px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        width: 20%;
+    }
+
+        .search-box button:hover {
+            background-color: #0056b3;
+        }
+
+.flight-info {
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    text-align: left;
+}
+
+    .flight-info h3 {
+        font-size: 20px;
+        color: #007bff;
+        font-weight: bold;
+    }
+
+.details {
+    margin-top: 10px;
+    font-size: 16px;
+}
+
+    .details p {
+        margin: 8px 0;
+        color: #333;
+    }
+
+.status {
+    font-weight: bold;
+    color: #28a745;
+}
+
+h4 {
+    font-size: 18px;
+    margin-top: 15px;
+    color: #333;
+}
