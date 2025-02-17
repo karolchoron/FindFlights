@@ -11,6 +11,11 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav mx-auto">
                     <div class="nav-item">
+                        <NavLink class="nav-link" href="/" activeClass="active" @onclick="HideMenu">
+                            <i class="fas fa-home"></i>
+                        </NavLink>
+                    </div>
+                    <div class="nav-item">
                         <NavLink class="nav-link" href="/explore" activeClass="active" @onclick="HideMenu">
                             <i class="fas fa-globe"></i> Eksploruj
                         </NavLink>
