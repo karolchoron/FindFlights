@@ -12,6 +12,13 @@
         <button @onclick="SearchFlight"><span role="img" aria-label="search">🔍</span> Sprawdź</button>
     </div>
 
+    @if (!string.IsNullOrEmpty(ErrorMessage))
+    {
+        <div class="error-message">
+            <strong>Wystąpił błąd:</strong> @ErrorMessage
+        </div>
+    }
+
     @if (FlightData is not null)
     {
         <div class="flight-info">
@@ -24,7 +31,7 @@
 
                 <h4>✈️ Wylot</h4>
                 <p><strong>Lotnisko:</strong> @FlightData.departure.airport (@FlightData.departure.iata)</p>
-                <p><strong>Planowany czas:</strong> @FormatDate(FlightData.departure.scheduled)</p>  
+                <p><strong>Planowany czas:</strong> @FormatDate(FlightData.departure.scheduled)</p>
                 <p><strong>Strefa czasowa:</strong> @(string.IsNullOrEmpty(FlightData.departure.timezone) ? "Brak informacji" : FlightData.departure.timezone)</p>
                 <p><strong>Terminal:</strong> @(string.IsNullOrEmpty(FlightData.arrival.terminal) ? "Brak informacji" : FlightData.arrival.terminal)</p>
                 <p><strong>Opóźnienie:</strong> @(FlightData.departure.delay ?? 0) min</p>

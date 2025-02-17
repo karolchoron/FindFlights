@@ -4,6 +4,6 @@ namespace FindFlights.Modules.FlightTracker
 {
     public class FlightApiResponse
     {
-        public List<FlightInfo> Data { get; set; }
+        public List<FlightInfo> data { get; set; }
     }
 }
