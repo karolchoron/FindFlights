@@ -19,6 +19,7 @@ html, body {
 .nav-item {
     text-decoration: none;
     padding: 10px 25px;
+    margin: 0 15px;
     font-size: 16px;
     color: #333;
     font-weight: 600;
@@ -27,12 +28,10 @@ html, body {
     transition: all 0.3s ease;
     border: 2px solid #ddd;
     border-radius: 25px;
-    margin: 0 15px;
 }
 .nav-item i {
         margin-right: 8px;
         color: #1a73e8;
-
 }
 
 .nav-item:hover {

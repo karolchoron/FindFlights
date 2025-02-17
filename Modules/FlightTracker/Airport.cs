@@ -2,11 +2,11 @@
 {
     public class Airport
     {
-        public string Name { get; set; }
-        public string Iata { get; set; }
-        public string Scheduled { get; set; }
-        public string Terminal { get; set; }
-        public int? Delay { get; set; }
+        public string airport { get; set; }
+        public string iata { get; set; }
+        public string scheduled { get; set; }
+        public string terminal { get; set; }
+        public int? delay { get; set; } // nullable int
+        public string timezone { get; set; }
     }
-
 }

@@ -17,18 +17,24 @@
         <div class="flight-info">
             <h3><span role="img" aria-label="info">ℹ️</span> Szczegóły lotu</h3>
             <div class="details">
-                <p><strong>Linia lotnicza:</strong> @FlightData.Airline.Name (@FlightData.Airline.Iata)</p>
-                <p><strong>Status:</strong> <span class="status">@FlightData.FlightStatus</span></p>
+                <p><strong>Linia lotnicza:</strong> @FlightData.airline.name</p>
+                <p><strong>IATA:</strong> @FlightData.airline.iata</p>
+                <p><strong>Status:</strong> @(string.IsNullOrEmpty(FlightData.flight_status) ? "Brak informacji" : FlightData.flight_status)</p>
+                <br />
 
                 <h4>✈️ Wylot</h4>
-                <p><strong>Lotnisko:</strong> @FlightData.Departure.Name (@FlightData.Departure.Iata)</p>
-                <p><strong>Planowany czas:</strong> @FlightData.Departure.Scheduled</p>
-                <p><strong>Opóźnienie:</strong> @(FlightData.Departure.Delay ?? 0) min</p>
+                <p><strong>Lotnisko:</strong> @FlightData.departure.airport (@FlightData.departure.iata)</p>
+                <p><strong>Planowany czas:</strong> @FormatDate(FlightData.departure.scheduled)</p>  
+                <p><strong>Strefa czasowa:</strong> @(string.IsNullOrEmpty(FlightData.departure.timezone) ? "Brak informacji" : FlightData.departure.timezone)</p>
+                <p><strong>Terminal:</strong> @(string.IsNullOrEmpty(FlightData.arrival.terminal) ? "Brak informacji" : FlightData.arrival.terminal)</p>
+                <p><strong>Opóźnienie:</strong> @(FlightData.departure.delay ?? 0) min</p>
+                <br />
 
                 <h4>🛬 Przylot</h4>
-                <p><strong>Lotnisko:</strong> @FlightData.Arrival.Name (@FlightData.Arrival.Iata)</p>
-                <p><strong>Planowany czas:</strong> @FlightData.Arrival.Scheduled</p>
-                <p><strong>Terminal:</strong> @FlightData.Arrival.Terminal</p>
+                <p><strong>Lotnisko:</strong> @FlightData.arrival.airport (@FlightData.arrival.iata)</p>
+                <p><strong>Planowany czas:</strong> @FormatDate(FlightData.arrival.scheduled)</p>
+                <p><strong>Strefa czasowa:</strong> @(string.IsNullOrEmpty(FlightData.departure.timezone) ? "Brak informacji" : FlightData.departure.timezone)</p>
+                <p><strong>Terminal:</strong> @(string.IsNullOrEmpty(FlightData.arrival.terminal) ? "Brak informacji" : FlightData.arrival.terminal)</p>
             </div>
         </div>
     }

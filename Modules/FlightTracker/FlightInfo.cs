@@ -2,8 +2,8 @@
 
 public class FlightInfo
 {
-    public string FlightStatus { get; set; }
-    public Airline Airline { get; set; }
-    public Airport Departure { get; set; }
-    public Airport Arrival { get; set; }
+    public string flight_status { get; set; }
+    public Airline airline { get; set; }
+    public Airport departure { get; set; }
+    public Airport arrival { get; set; }
 }

@@ -2,7 +2,7 @@
 {
     public class Airline
     {
-        public string Name { get; set; }
-        public string Iata { get; set; }
+        public string name { get; set; }
+        public string iata { get; set; }
     }
 }
