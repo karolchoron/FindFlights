@@ -4,11 +4,11 @@ html, body {
 }
 
 .top-row {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
     background-color: #fff;
     border-bottom: 1px solid #ddd;
-    position: sticky;
-    height: 10vh;
-    z-index: 999;
 }
 
 .navbar-nav {
