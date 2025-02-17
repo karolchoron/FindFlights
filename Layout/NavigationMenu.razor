@@ -1,27 +1,32 @@
-﻿@inherits LayoutComponentBase
+﻿@inherits NavigationMenuBase
 
 <div class="page">
     <div class="top-row navbar navbar-expand-lg navbar-light bg-light">
         <div class="container">
+            <!-- Hamburger button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="navbar-nav mx-auto">
                     <div class="nav-item">
-                        <NavLink class="nav-link" href="/explore" activeClass="active">
+                        <NavLink class="nav-link" href="/explore" activeClass="active" @onclick="HideMenu">
                             <i class="fas fa-globe"></i> Eksploruj
                         </NavLink>
                     </div>
                     <div class="nav-item">
-                        <NavLink class="nav-link" href="/search" activeClass="active">
+                        <NavLink class="nav-link" href="/search" activeClass="active" @onclick="HideMenu">
                             <i class="fas fa-search"></i> Szukaj lotów
                         </NavLink>
                     </div>
                     <div class="nav-item">
-                        <NavLink class="nav-link" href="/flight-tracker" activeClass="active">
+                        <NavLink class="nav-link" href="/flight-tracker" activeClass="active" @onclick="HideMenu">
                             <i class="fas fa-plane"></i> Śledź swój lot
                         </NavLink>
                     </div>
                     <div class="nav-item">
-                        <NavLink class="nav-link" href="/favorite" activeClass="active">
+                        <NavLink class="nav-link" href="/favorite" activeClass="active" @onclick="HideMenu">
                             <i class="fas fa-star"></i> Ulubione
                         </NavLink>
                     </div>

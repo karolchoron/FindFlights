@@ -8,6 +8,7 @@ html, body {
     border-bottom: 1px solid #ddd;
     position: sticky;
     height: 10vh;
+    z-index: 999;
 }
 
 .navbar-nav {
@@ -29,19 +30,34 @@ html, body {
     border: 2px solid #ddd;
     border-radius: 25px;
 }
-.nav-item i {
+
+    .nav-item i {
         margin-right: 8px;
         color: #1a73e8;
-}
+    }
 
-.nav-item:hover {
+    .nav-item:hover {
         color: #1a73e8;
         background-color: #f1f3f4;
         border: 2px solid #1a73e8;
-}
+    }
 
 .nav-link.active {
     color: #1a73e8;
     background-color: #e8f0fe;
     border: 2px solid #1a73e8;
+}
+
+/* CSS for responsive navigation */
+@media (max-width: 991px) {
+    .navbar-nav {
+        flex-direction: column;
+        text-align: center;
+        width: 100%;
+    }
+
+    .nav-item {
+        margin: 5px 0;
+        width: 100%;
+    }
 }
