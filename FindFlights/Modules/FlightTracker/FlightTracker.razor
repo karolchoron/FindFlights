@@ -26,6 +26,8 @@
             <div class="details">
                 <p><strong>Linia lotnicza:</strong> @FlightData.airline.name</p>
                 <p><strong>IATA:</strong> @FlightData.airline.iata</p>
+                <p><strong>Nr:</strong> @FlightData.flight.iata</p>
+                
                 <p><strong>Status:</strong> @(string.IsNullOrEmpty(FlightData.flight_status) ? "Brak informacji" : FlightData.flight_status)</p>
                 <br />
 

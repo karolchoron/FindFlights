@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 using System.Net.Http;
 using System.Threading.Tasks;
 using static System.Runtime.InteropServices.JavaScript.JSType;
-using FindFlightsAPIServer.Controllers.FlightTracker.Models;
     
 namespace FindFlightsAPI.Controllers
 {
