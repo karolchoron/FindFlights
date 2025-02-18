@@ -25,8 +25,8 @@ namespace FindFlightsAPI.Controllers
                 return BadRequest("Numer lotu nie mo¿e byæ pusty");
             }
 
-            // TODO API KEY
-            var url = $"http://api.aviationstack.com/v1/flights?access_key=XXX_ADD_API_KEY_XXX&flight_iata={flightNumber}";
+            var apiKey = "TODO_API_KEY";
+            var url = $"http://api.aviationstack.com/v1/flights?access_key={apiKey}&flight_iata={flightNumber}";
 
             try
             {
