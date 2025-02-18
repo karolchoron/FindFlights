@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
 using FindFlights.Modules.FlightTracker.Models;
+using static System.Net.WebRequestMethods;
 
 public class FlightTrackerBase : ComponentBase
 {
@@ -19,12 +20,10 @@ public class FlightTrackerBase : ComponentBase
     {
         if (!string.IsNullOrEmpty(FlightNumber))
         {
-            // URL do API backendu
-            var url = $"http://localhost:5240/api/flighttracker/flightinfo?flightNumber={FlightNumber}"; // HTTP
- 
+            var url = $"http://localhost:5240/api/flighttracker/flightinfo?flightNumber={FlightNumber}"; // URL do API backendu
+
             try
             {
-                // Wysłanie zapytania do lokalnego API
                 var response = await Http.GetFromJsonAsync<FlightApiResponse>(url);
 
                 if (response == null)
@@ -41,17 +40,40 @@ public class FlightTrackerBase : ComponentBase
                 else
                 {
                     ErrorMessage = "Nie znaleziono lotu o podanym numerze.";
-                    return;
                 }
             }
+
             catch (HttpRequestException ex)
             {
-                ErrorMessage = $"Wystąpił błąd: {ex.Message}";
+                if (ex.Message.Contains("401"))
+                {
+                    ErrorMessage = "Błąd autoryzacji: Nieprawidłowy klucz API. Skontakuj się z administratorem.";
+                }
+                else if (ex.Message.Contains("403"))
+                {
+                    ErrorMessage = "Dostęp zabroniony: Funkcja nie jest dostępna na obecnym planie subskrypcji. Skontakuj się z administratorem.";
+                }
+                else if (ex.Message.Contains("404"))
+                {
+                    ErrorMessage = "Nie znaleziono żądanej funkcji API. Skontakuj się z administratorem.";
+                }
+                else if (ex.Message.Contains("429"))
+                {
+                    ErrorMessage = "Przekroczono limit zapytań. Spróbuj ponownie później lub skontakuj się z administratorem.";
+                }
+                else if (ex.Message.Contains("500"))
+                {
+                    ErrorMessage = "Wewnętrzny błąd serwera. Spróbuj ponownie później.";
+                }
+                else
+                {
+                    ErrorMessage = $"Wystąpił błąd: {ex.Message}";
+                }
             }
         }
     }
 
-    // Zmiana formatu daty
+    // Zmiana formatu daty - nie zależnie od stref czasowych
     protected string FormatDate(string scheduledTime)
     {
         if (DateTimeOffset.TryParse(scheduledTime, out DateTimeOffset parsedDate))

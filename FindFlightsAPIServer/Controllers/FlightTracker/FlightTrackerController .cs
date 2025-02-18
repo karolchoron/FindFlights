@@ -25,25 +25,49 @@ namespace FindFlightsAPI.Controllers
                 return BadRequest("Numer lotu nie mo¿e byæ pusty");
             }
 
-            // TODO tymczasowo zmienne key api
-            var url = $"http://api.aviationstack.com/v1/flights?access_key=XXX_PUT_HERE_YOU_API_KEY_XXX&flight_iata={flightNumber}";
-
+            // TODO API KEY
+            var url = $"http://api.aviationstack.com/v1/flights?access_key=XXX_ADD_API_KEY_XXX&flight_iata={flightNumber}";
+            
             try
             {
-                // Wywo³anie zewnêtrznego API - aviationstack
-                var response = await _httpClient.GetStringAsync(url);
+                var response = await _httpClient.GetAsync(url);
 
-                // Jeœli odpowiedŸ jest pusta
-                if (string.IsNullOrEmpty(response))
+                if (!response.IsSuccessStatusCode)
+                {
+                    var errorResponse = await response.Content.ReadAsStringAsync();
+                    return HandleApiErrorResponse(response.StatusCode);
+                }
+
+                var flightData = await response.Content.ReadAsStringAsync();
+
+                if (string.IsNullOrEmpty(flightData))
                 {
                     return NotFound("Nie znaleziono danych o locie.");
                 }
 
-                return Ok(response); // Zwroc dane z API aviationstack
+                return Ok(flightData); // Zwroc dane w formacie JSON
             }
             catch (Exception ex)
             {
                 return StatusCode(500, $"B³¹d podczas ³¹czenia siê z API: {ex.Message}");
+            }
+        }
+        private IActionResult HandleApiErrorResponse(System.Net.HttpStatusCode statusCode)
+        {
+            switch (statusCode)
+            {
+                case System.Net.HttpStatusCode.Unauthorized:
+                    return Unauthorized();
+                case System.Net.HttpStatusCode.Forbidden:
+                    return Forbid();
+                case System.Net.HttpStatusCode.NotFound:
+                    return NotFound();
+                case System.Net.HttpStatusCode.TooManyRequests:
+                    return StatusCode(429);
+                case System.Net.HttpStatusCode.InternalServerError:
+                    return StatusCode(500);
+                default:
+                    return StatusCode(500);
             }
         }
     }
