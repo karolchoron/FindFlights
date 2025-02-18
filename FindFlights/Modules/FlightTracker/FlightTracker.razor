@@ -12,18 +12,6 @@
         <button @onclick="SearchFlight"><span role="img" aria-label="search">🔍</span> Sprawdź</button>
     </div>
 
-
-    @* <div class="search-box"> *@
-    @*     <input type="number" @bind="InputNumber" placeholder="10" /> *@
-    @*     <button @onclick="DoubleNumber">OBLICZ</button> *@
-    @* </div> *@
-
-    @* @if (DoubledResult.HasValue) *@
-    @*     { *@
-    @*         <p>OBLICZENIA WYNIK: @DoubledResult</p> *@
-    @*     } *@
-
-
     @if (!string.IsNullOrEmpty(ErrorMessage))
     {
         <div class="error-message">

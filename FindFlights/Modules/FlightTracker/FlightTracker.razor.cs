@@ -5,33 +5,27 @@ using System;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
+using FindFlights.Modules.FlightTracker.Models;
 
 public class FlightTrackerBase : ComponentBase
 {
     [Inject] private HttpClient Http { get; set; }
 
     protected string? FlightNumber { get; set; }
-    protected FlightInfo? FlightData { get; set; }
+    protected FlightData? FlightData { get; set; }
     protected string? ErrorMessage { get; set; }
 
     protected async Task SearchFlight()
     {
         if (!string.IsNullOrEmpty(FlightNumber))
         {
-            // URL do lokalnego API
+            // URL do API backendu
             var url = $"http://localhost:5240/api/flighttracker/flightinfo?flightNumber={FlightNumber}"; // HTTP
-
-            Console.WriteLine($"!!! KLIENT url klient: {url}");
-            Console.WriteLine($"!!! KLIENT  FlightNumber klient: {FlightNumber}");
-            
+ 
             try
             {
                 // Wysłanie zapytania do lokalnego API
                 var response = await Http.GetFromJsonAsync<FlightApiResponse>(url);
-
-                Console.WriteLine($"!!! KLIENT  response: {response}");
-
-
 
                 if (response == null)
                 {
@@ -56,57 +50,6 @@ public class FlightTrackerBase : ComponentBase
             }
         }
     }
-
-
-    //// Klasa pomocnicza do odbierania odpowiedzi API
-    //public class DoubleResponse
-    //{
-    //    public int original { get; set; }
-    //    public int doubled { get; set; }
-    //}
-
-
-    //public int InputNumber { get; set; }
-    //public int? DoubledResult { get; set; }
-
-    //protected async Task DoubleNumber()
-    //{
-
-
-    //    // HTTP
-    //    var url = $"http://localhost:5240/api/flighttracker/double?number={InputNumber}";
-    //    Console.WriteLine($"!!! KLIENT Wysyłanie do API: {url}");
-
-  
-    //    try
-    //    {
-    //        Console.WriteLine("!!! KLIENT Sending request to API");
-    //        var response = await Http.GetFromJsonAsync<DoubleResponse>(url);
-    //        Console.WriteLine("!!! KLIENT Received response from API");
-    //        //var response = await Http.GetFromJsonAsync<DoubleResponse>(url);
-
-
-    //        Console.WriteLine($"!!! KLIENTresponse: {response}");
-            
-
-    //        if (response != null)
-    //        {
-    //            DoubledResult = response.doubled;
-    //            Console.WriteLine($"!!! KLIENT Odpowiedź z API: {DoubledResult}");
-    //        }
-    //        else
-    //        {
-    //            Console.WriteLine("!!! KLIENT Błąd: Pusta odpowiedź");
-    //        }
-    //    }
-    //    catch (HttpRequestException ex)
-    //    {
-    //        Console.WriteLine($"!!! KLIENT Błąd: {ex.Message}");
-    //    }
-    //}
-
-
-
 
     // Zmiana formatu daty
     protected string FormatDate(string scheduledTime)

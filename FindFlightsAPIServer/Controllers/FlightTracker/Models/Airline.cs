@@ -1,4 +1,4 @@
-﻿namespace FindFlights.Modules.FlightTracker
+﻿namespace FindFlightsAPIServer.Controllers.FlightTracker.Models
 {
     public class Airline
     {
