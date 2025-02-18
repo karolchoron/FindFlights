@@ -64,7 +64,7 @@ project.fragment.lock.json
 artifacts/
 
 # secrets
-secrets.json
+#secrets.json
 
 # ASP.NET Scaffolding
 ScaffoldingReadMe.txt
