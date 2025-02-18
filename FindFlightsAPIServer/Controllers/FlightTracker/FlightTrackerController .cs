@@ -1,9 +1,7 @@
 using Microsoft.AspNetCore.DataProtection.KeyManagement;
 using Microsoft.AspNetCore.Mvc;
-using System.Net.Http;
-using System.Threading.Tasks;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-    
+using Microsoft.Extensions.Configuration;
+
 namespace FindFlightsAPI.Controllers
 {
     [Route("api/flights")]
@@ -11,10 +9,17 @@ namespace FindFlightsAPI.Controllers
     public class FlightTrackerController : ControllerBase
     {
         private readonly HttpClient _httpClient;
+        private readonly string _apiKey;
 
-        public FlightTrackerController(HttpClient httpClient)
+        public FlightTrackerController(HttpClient httpClient, AviationStackSettings settings)
         {
             _httpClient = httpClient;
+
+            _apiKey = settings.ApiKey;
+            if (string.IsNullOrEmpty(_apiKey))
+            {
+                throw new InvalidOperationException("Brak API Key w konfiguracji!");
+            }
         }
 
         [HttpGet("{flightNumber}")]
@@ -25,8 +30,7 @@ namespace FindFlightsAPI.Controllers
                 return BadRequest("Numer lotu nie mo¿e byæ pusty");
             }
 
-            var apiKey = "TODO_API_KEY";
-            var url = $"http://api.aviationstack.com/v1/flights?access_key={apiKey}&flight_iata={flightNumber}";
+            var url = $"http://api.aviationstack.com/v1/flights?access_key={_apiKey}&flight_iata={flightNumber}";
 
             try
             {
