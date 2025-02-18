@@ -6,9 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindFlights", "FindFlights.csproj", "{95ED7BA2-5775-432E-97E4-B74C72A73C2C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindFlightsAPIServer", "..\FindFlightsAPIServer\FindFlightsAPIServer.csproj", "{07314391-284A-4285-934D-83F00596518C}"
-	ProjectSection(ProjectDependencies) = postProject
-		{95ED7BA2-5775-432E-97E4-B74C72A73C2C} = {95ED7BA2-5775-432E-97E4-B74C72A73C2C}
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

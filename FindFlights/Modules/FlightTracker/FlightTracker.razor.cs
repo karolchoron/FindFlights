@@ -1,5 +1,7 @@
 ﻿using FindFlights.Modules.FlightTracker;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Forms;
+using System;
 using System.Net.Http;
 using System.Net.Http.Json;
 using System.Threading.Tasks;
@@ -16,14 +18,20 @@ public class FlightTrackerBase : ComponentBase
     {
         if (!string.IsNullOrEmpty(FlightNumber))
         {
-            // URL do zapytania API
-            
-            // TODO - API keys -> secrets
-            var url = $"https://api.aviationstack.com/v1/flights?access_key=XXX_PUT_HERE_YOUR_API_KEY_XXX&flight_iata={FlightNumber}";
+            // URL do lokalnego API
+            var url = $"http://localhost:5240/api/flighttracker/flightinfo?flightNumber={FlightNumber}"; // HTTP
 
+            Console.WriteLine($"!!! KLIENT url klient: {url}");
+            Console.WriteLine($"!!! KLIENT  FlightNumber klient: {FlightNumber}");
+            
             try
             {
+                // Wysłanie zapytania do lokalnego API
                 var response = await Http.GetFromJsonAsync<FlightApiResponse>(url);
+
+                Console.WriteLine($"!!! KLIENT  response: {response}");
+
+
 
                 if (response == null)
                 {
@@ -34,7 +42,7 @@ public class FlightTrackerBase : ComponentBase
                 if (response?.data?.Count > 0)
                 {
                     FlightData = response.data[0];
-                    ErrorMessage = ""; // czyszczenie error message z poprzednich zapytań
+                    ErrorMessage = ""; // czyszczenie komunikatu o błędzie
                 }
                 else
                 {
@@ -42,35 +50,65 @@ public class FlightTrackerBase : ComponentBase
                     return;
                 }
             }
-            catch (HttpRequestException ex) when (ex.Message.Contains("403"))
+            catch (HttpRequestException ex)
             {
-                ErrorMessage = "Brak dostępu do tej funkcji w wybranym planie subskrypcyjnym. Poinformuj administratora strony.";
-            }
-            catch (HttpRequestException ex) when (ex.Message.Contains("404"))
-            {
-                ErrorMessage = "Zasób nie został znaleziony. Sprawdź numer lotu.";
-            }
-            catch (HttpRequestException ex) when (ex.Message.Contains("500"))
-            {
-                ErrorMessage = "Wystąpił błąd wewnętrzny serwera. Spróbuj ponownie później.";
-            }
-            catch (HttpRequestException ex) when (ex.Message.Contains("401"))
-            {
-                ErrorMessage = "Nieprawidłowy klucz API. Sprawdź swój klucz dostępu.";
-            }
-            // Glowne bledy:
-            catch (HttpRequestException ex) when (ex.Message.Contains("429"))
-            {
-                ErrorMessage = "Przekroczono limit zapytań do API. Skontaktuj się z administratorem lub spróbuj ponownie później.";
-            }
-            catch (Exception ex)
-            {
-                ErrorMessage = $"Wystąpił nieoczekiwany błąd: {ex.Message}";
+                ErrorMessage = $"Wystąpił błąd: {ex.Message}";
             }
         }
     }
 
-    // Zmiana formatu daty, bez zmiany strefy czasowej
+
+    //// Klasa pomocnicza do odbierania odpowiedzi API
+    //public class DoubleResponse
+    //{
+    //    public int original { get; set; }
+    //    public int doubled { get; set; }
+    //}
+
+
+    //public int InputNumber { get; set; }
+    //public int? DoubledResult { get; set; }
+
+    //protected async Task DoubleNumber()
+    //{
+
+
+    //    // HTTP
+    //    var url = $"http://localhost:5240/api/flighttracker/double?number={InputNumber}";
+    //    Console.WriteLine($"!!! KLIENT Wysyłanie do API: {url}");
+
+  
+    //    try
+    //    {
+    //        Console.WriteLine("!!! KLIENT Sending request to API");
+    //        var response = await Http.GetFromJsonAsync<DoubleResponse>(url);
+    //        Console.WriteLine("!!! KLIENT Received response from API");
+    //        //var response = await Http.GetFromJsonAsync<DoubleResponse>(url);
+
+
+    //        Console.WriteLine($"!!! KLIENTresponse: {response}");
+            
+
+    //        if (response != null)
+    //        {
+    //            DoubledResult = response.doubled;
+    //            Console.WriteLine($"!!! KLIENT Odpowiedź z API: {DoubledResult}");
+    //        }
+    //        else
+    //        {
+    //            Console.WriteLine("!!! KLIENT Błąd: Pusta odpowiedź");
+    //        }
+    //    }
+    //    catch (HttpRequestException ex)
+    //    {
+    //        Console.WriteLine($"!!! KLIENT Błąd: {ex.Message}");
+    //    }
+    //}
+
+
+
+
+    // Zmiana formatu daty
     protected string FormatDate(string scheduledTime)
     {
         if (DateTimeOffset.TryParse(scheduledTime, out DateTimeOffset parsedDate))
