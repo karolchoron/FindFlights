@@ -20,7 +20,8 @@ public class FlightTrackerBase : ComponentBase
     {
         if (!string.IsNullOrEmpty(FlightNumber))
         {
-            var url = $"http://localhost:5240/api/flighttracker/flightinfo?flightNumber={FlightNumber}"; // URL do API backendu
+            // URL do API backendu
+            var url = $"http://localhost:5240/api/flights/{FlightNumber}";
 
             try
             {

@@ -6,7 +6,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
     
 namespace FindFlightsAPI.Controllers
 {
-    [Route("api/flighttracker")]
+    [Route("api/flights")]
     [ApiController]
     public class FlightTrackerController : ControllerBase
     {
@@ -17,7 +17,7 @@ namespace FindFlightsAPI.Controllers
             _httpClient = httpClient;
         }
 
-        [HttpGet("flightinfo")]
+        [HttpGet("{flightNumber}")]
         public async Task<IActionResult> GetFlightData(string flightNumber)
         {
             if (string.IsNullOrEmpty(flightNumber))
@@ -27,7 +27,7 @@ namespace FindFlightsAPI.Controllers
 
             // TODO API KEY
             var url = $"http://api.aviationstack.com/v1/flights?access_key=XXX_ADD_API_KEY_XXX&flight_iata={flightNumber}";
-            
+
             try
             {
                 var response = await _httpClient.GetAsync(url);
