@@ -1,30 +1,26 @@
-# Build stage - u¿ywamy obrazu SDK .NET 9.0
+# U¿ywamy obrazu .NET SDK do budowania aplikacji Blazor WebAssembly
 FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
 # Ustawiamy katalog roboczy
-WORKDIR /app
+WORKDIR /src
 
-# Kopiujemy plik csproj i przywracamy zale¿noœci (nuget)
-COPY *.csproj ./
+# Kopiujemy pliki projektu Blazor do kontenera
+COPY . .
+
+# Przywracamy zale¿noœci NuGet
 RUN dotnet restore
 
-# Kopiujemy resztê plików
-COPY . ./
+# Budujemy aplikacjê w trybie Release
+RUN dotnet publish -c Release -o /app/publish
 
-# Budujemy aplikacjê Blazor i publikujemy do folderu /out
-RUN dotnet publish -c Release -o /out
+# Tworzymy nowy, mniejszy obraz do hostowania statycznych plików
+FROM nginx:alpine AS final
 
-# Runtime stage - u¿ywamy obrazu .NET ASP.NET 9.0
-FROM mcr.microsoft.com/dotnet/aspnet:9.0
+# Kopiujemy statyczne pliki z etapu build
+COPY --from=build /app/publish/wwwroot /usr/share/nginx/html
 
-# Ustawiamy katalog roboczy
-WORKDIR /app
-
-# Kopiujemy pliki z etapu build (publikacja)
-COPY --from=build /out .
-
-# Otwieramy port 80
+# Otwieramy port 80 dla aplikacji Blazor
 EXPOSE 80
 
-# Uruchamiamy aplikacjê
-ENTRYPOINT ["dotnet", "FindFlights.dll"]
+# Uruchamiamy Nginx do serwowania aplikacji Blazor
+CMD ["nginx", "-g", "daemon off;"]
