@@ -5,8 +5,6 @@ VisualStudioVersion = 17.13.35806.99
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindFlights", "FindFlights.csproj", "{95ED7BA2-5775-432E-97E4-B74C72A73C2C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FindFlightsAPIServer", "..\FindFlightsAPIServer\FindFlightsAPIServer.csproj", "{07314391-284A-4285-934D-83F00596518C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,10 +15,6 @@ Global
 		{95ED7BA2-5775-432E-97E4-B74C72A73C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{95ED7BA2-5775-432E-97E4-B74C72A73C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{95ED7BA2-5775-432E-97E4-B74C72A73C2C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{07314391-284A-4285-934D-83F00596518C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{07314391-284A-4285-934D-83F00596518C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{07314391-284A-4285-934D-83F00596518C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{07314391-284A-4285-934D-83F00596518C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
