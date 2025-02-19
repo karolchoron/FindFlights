@@ -21,7 +21,8 @@ public class FlightTrackerBase : ComponentBase
         if (!string.IsNullOrEmpty(FlightNumber))
         {
             // URL do API backendu
-            var url = $"http://localhost:5240/api/flights/{FlightNumber}";
+            // var url = $"http://localhost:5240/api/flights/{FlightNumber}"; // LOCALHOST
+            var url = $"https://findflightsapiserver.onrender.com/api/flights/{FlightNumber}"; // API backend
 
             try
             {
