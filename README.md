@@ -44,8 +44,10 @@ HTTPS: 7220
 
 ---
 
-🤝 Kontakt
-Masz pytania? 
-Skontaktuj się na LinkedIn
+🤝 **Kontakt** 
+Masz pytania?
+
+Skontaktuj się przez  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?logo=linkedin&style=for-the-badge)](https://www.linkedin.com/in/karol-choron/)
 
 ---
