@@ -1,12 +1,6 @@
-﻿using FindFlights.Modules.FlightTracker;
-using Microsoft.AspNetCore.Components;
-using Microsoft.AspNetCore.Components.Forms;
-using System;
-using System.Net.Http;
+﻿using Microsoft.AspNetCore.Components;
 using System.Net.Http.Json;
-using System.Threading.Tasks;
 using FindFlights.Modules.FlightTracker.Models;
-using static System.Net.WebRequestMethods;
 
 public class FlightTrackerBase : ComponentBase
 {
