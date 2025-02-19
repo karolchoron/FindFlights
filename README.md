@@ -1,8 +1,10 @@
-# FindFlights
+# FindFlightsAPIServer
 
-Will be deployed soon
+Application deployed on:
+https://findflights.onrender.com/
 
-Info:
+
+More information:
 https://github.com/karolchoron/FindFlights - frontend app
 
 https://github.com/karolchoron/FindFlightsAPIServer - backend app 
