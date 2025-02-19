@@ -1,19 +1,28 @@
-﻿html, body {
-    margin: 0;
-    padding: 0;
-}
-
-.page, main {
-    margin: 0;
-    padding: 0;
+﻿.explore-container {
+    max-width: 900px;
+    margin: auto;
+    padding: 40px;
+    text-align: center;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
 }
 
 #leafletMap {
-    height: 86vh;
+    height: 70vh;
     width: 100%;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    border-radius: 12px;
+    margin-top: 20px;
+}
+
+h1 {
+    font-size: 32px;
+    color: #007bff;
+    margin-bottom: 15px;
+}
+
+p {
+    font-size: 18px;
+    color: #555;
+    margin-bottom: 20px;
 }
