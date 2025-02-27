@@ -4,7 +4,7 @@
 
 ## EN (PL version bellow)
 
-FlightTrack  is a real-time flight status tracking application. 🛫
+### FlightTrack  is a real-time flight status tracking application. 🛫
 
 🔗 **Start the application:**
 ➡ [https://findflights.onrender.com](https://findflights.onrender.com)  
@@ -57,7 +57,7 @@ Contact via
 
 ## PL
 
-FlightTrack to aplikacja do śledzenia statusów lotów w czasie rzeczywistym. 🛫
+### FlightTrack to aplikacja do śledzenia statusów lotów w czasie rzeczywistym. 🛫
 
 🔗 **Uruchom aplikację:**  
 ➡ [https://findflights.onrender.com](https://findflights.onrender.com)  
